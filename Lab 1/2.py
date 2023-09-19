@@ -13,7 +13,7 @@ def upper_bound(array, key):
     left = -1
     right = len(array)
 
-    while right > left + 1:
+    while left < right - 1:
         middle = (left + right) // 2
         if int(array[middle]) > key:
             right = middle
@@ -27,7 +27,7 @@ def lower_bound(array, key):
     left = -1
     right = len(array)
 
-    while right > left + 1:
+    while left < right - 1:
         middle = (left + right) // 2
         if int(array[middle]) >= key:
             right = middle
