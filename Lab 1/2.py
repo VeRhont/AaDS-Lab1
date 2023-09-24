@@ -6,6 +6,9 @@ def read_data():
         students = [tuple(s.split()) for s in file.readlines()]
         students.sort()
 
+    for i in students:
+        print(*i)
+
     return questions, students
 
 
