@@ -21,6 +21,7 @@ def bubble_sort(array):
         for j in range(0, i):
             if array_copy[i] < array_copy[j]:
                 array_copy[i], array_copy[j] = array_copy[j], array_copy[i]
+
     return array_copy
 
 
@@ -42,7 +43,7 @@ def generate_random_array(n):
 
 
 if __name__ == '__main__':
-    n = 30_000
+    n = 10_000
     array = generate_random_array(n)
 
     print('Bubble Sort:')
