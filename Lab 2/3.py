@@ -1,12 +1,9 @@
-from random import randint
-
-
 def check_time(name):
     def decorator(func):
         def wrapper(n):
 
             print(name)
-            for i in range(n):
+            for i in range(1, n + 1):
                 result = func(i)
                 print(f'{i}: {result} steps')
             print()
@@ -35,8 +32,16 @@ def f2(n):
 
 @check_time('O(n!)')
 def f3(n):
-    steps = 0
-    return steps
+    def f3_1(n):
+        if n == 1: return 1
+        steps = 0
+
+        for i in range(0, n):
+            steps += f3_1(n - 1)
+
+        return steps
+
+    return f3_1(n)
 
 
 @check_time('O(n^3)')
@@ -55,16 +60,15 @@ def f4(n):
 def f5(n):
     steps = 0
 
+    if n % 2 != 0:
+        m = n + 1
+    else:
+        m = n
+
     # for i in range(3):
-    m = n
-    while m > 0:
+    while m > 1:
         steps += 1
-
-        if m % 2 == 0:
-            break
-        else:
-            m //= 2
-
+        m //= 2
 
     return steps
 
@@ -77,4 +81,3 @@ if __name__ == '__main__':
     # f3(n)
     # f4(n)
     f5(n)
-
