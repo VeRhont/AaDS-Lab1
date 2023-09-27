@@ -1,6 +1,3 @@
-from random import randint
-
-
 def check_time(name):
     def decorator(func):
         def wrapper(n):
@@ -28,31 +25,29 @@ def f1(n):
     return steps
 
 
-steps = 0
-# @check_time('O(nlogn)')
+@check_time('O(nlogn)')
 def f2(n):
-    def merge_sort(array):
-        global steps
-        if len(array) < 2: return array[:]
-        steps += 1
-        middle = len(array) // 2
-        left = merge_sort(array[:middle])
-        right = merge_sort(array[middle:])
-        return merge(left, right)
+    matrix = [[i * 15 + j + 3 for i in range(n)] for j in range(n)]
 
-    def merge(array1, array2):
-        result = []
-        i, j = 0, 0
-        while (i < len(array1)) and (j < len(array2)):
-            if array1[i] < array2[j]: result.append(array1[i]); i += 1
-            else: result.append(array2[j]); j += 1
+    def binary_search(array):
+        steps = 0
+        left = 0
+        right = len(array) - 1
 
-        while i < len(array1): result.append(array1[i]); i += 1
-        while j < len(array2): result.append(array2[j]); j += 1
-        return result
+        while left < right:
+            steps += 1
+            middle = (left + right) // 2
 
-    array = [randint(-100, 100) for _ in range(n)]
-    result = merge_sort(array)
+            if (middle % 2 == 0):
+                left = middle + 1
+            else:
+                right = middle - 1
+
+        return steps + 1
+
+    steps = 0
+    for raw in matrix:
+        steps += binary_search(raw)
 
     return steps
 
@@ -99,10 +94,8 @@ def f5(n):
 if __name__ == '__main__':
     n = 10
 
-    # f1(n)
-    # f2(n)
-    # f3(n)
-    # f4(n)
-    # f5(n)
-
-    print(f2(10))
+    f1(n)
+    f2(n)
+    f3(n)
+    f4(n)
+    f5(n)
