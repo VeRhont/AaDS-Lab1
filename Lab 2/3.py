@@ -1,3 +1,6 @@
+from random import randint
+
+
 def check_time(name):
     def decorator(func):
         def wrapper(n):
@@ -25,9 +28,33 @@ def f1(n):
     return steps
 
 
-@check_time('O(nlogn)')
+steps = 0
+# @check_time('O(nlogn)')
 def f2(n):
-    pass
+    def merge_sort(array):
+        global steps
+        if len(array) < 2: return array[:]
+        steps += 1
+        middle = len(array) // 2
+        left = merge_sort(array[:middle])
+        right = merge_sort(array[middle:])
+        return merge(left, right)
+
+    def merge(array1, array2):
+        result = []
+        i, j = 0, 0
+        while (i < len(array1)) and (j < len(array2)):
+            if array1[i] < array2[j]: result.append(array1[i]); i += 1
+            else: result.append(array2[j]); j += 1
+
+        while i < len(array1): result.append(array1[i]); i += 1
+        while j < len(array2): result.append(array2[j]); j += 1
+        return result
+
+    array = [randint(-100, 100) for _ in range(n)]
+    result = merge_sort(array)
+
+    return steps
 
 
 @check_time('O(n!)')
@@ -60,15 +87,11 @@ def f4(n):
 def f5(n):
     steps = 0
 
-    if n % 2 != 0:
-        m = n + 1
-    else:
-        m = n
-
-    # for i in range(3):
-    while m > 1:
-        steps += 1
-        m //= 2
+    for i in range(3):
+        m = n + (n % 2 != 0)
+        while m > 1:
+            steps += 1
+            m /= 2
 
     return steps
 
@@ -80,4 +103,6 @@ if __name__ == '__main__':
     # f2(n)
     # f3(n)
     # f4(n)
-    f5(n)
+    # f5(n)
+
+    print(f2(10))
