@@ -1,4 +1,5 @@
 from random import randint
+from timeit import timeit
 
 
 def quick_sort(array):
@@ -16,8 +17,10 @@ def quick_sort(array):
 
 
 if __name__ == '__main__':
-    array = [randint(-100, 100) for _ in range(10)]
+    array = [randint(-100, 100) for _ in range(15)]
     print(f'Исходный массив: {array}')
+
+    print(f'Время: {timeit("lambda: quick_sort(array)")}')
 
     result = quick_sort(array)
     print(f'Отсортированный массив: {result}')
