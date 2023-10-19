@@ -4,17 +4,17 @@ from timeit import timeit
 
 def comb_sort(array):
     h = int(len(array) // 1.247) # текущий шаг
-    s = 0 # количество шагов для h
+    steps = 0 # количество шагов для h
     i = 0
 
-    while (h != 1) or (s != 0):
+    while (h != 1) or (steps != 0):
         if i + h < len(array):
             if array[i] > array[i + h]:
                 array[i], array[i + h] = array[i + h], array[i]
-                s += 1
+                steps += 1
             i += 1
         else:
-            i, s = 0, 0
+            i, steps = 0, 0
             h = int(h // 1.247)
 
 
