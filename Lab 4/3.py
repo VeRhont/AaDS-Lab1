@@ -33,7 +33,7 @@ def depth_search(matrix, i, j, current_path):
 
     if j == len(matrix) - 1:
         draw_path(matrix, current_path)
-        return
+        exit()
 
     possible = []
 
@@ -51,6 +51,8 @@ def depth_search(matrix, i, j, current_path):
 
     for point in possible:
         depth_search(matrix, point[0], point[1], current_path.copy())
+
+    return "Нет пути"
 
 
 def depth_search_3d(matrix, i, j, z, current_path):
@@ -80,6 +82,8 @@ def depth_search_3d(matrix, i, j, z, current_path):
 
     for p in possible:
         depth_search_3d(matrix, p[0], p[1], p[2], current_path.copy())
+
+    return "Нет пути"
 
 
 if __name__ == '__main__':
@@ -119,20 +123,32 @@ if __name__ == '__main__':
         [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     ]
 
-    path = set()
-    depth_search(matrix1, 7, 0, path)
-
-    path = set()
-    depth_search(matrix2, 13, 0, path)
-
-    matrix_3d = [
-        [
-            []
-        ],
-        [
-            []
-        ],
-        [
-            []
-        ]
+    matrix3 = [
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        [1,0,0,0,0,0,0,1,0,0,0,0,1,1,1],
+        [1,0,1,1,1,1,0,1,0,1,1,0,1,0,0],
+        [1,0,1,0,0,0,0,1,0,1,1,0,1,0,1],
+        [1,0,1,1,1,1,0,1,0,0,1,0,0,0,1],
+        [1,0,0,0,0,1,0,0,0,1,1,0,1,0,1],
+        [1,1,1,1,1,1,1,1,0,1,1,0,1,0,1],
+        [1,0,1,1,0,1,0,1,1,1,0,0,1,0,1],
+        [1,0,1,0,0,0,0,0,0,1,1,1,1,0,1],
+        [1,0,1,1,1,1,1,1,0,0,0,0,1,0,1],
+        [1,0,0,0,0,0,1,1,1,1,1,0,1,0,1],
+        [1,1,1,1,1,1,1,0,0,0,0,0,1,0,1],
+        [1,0,0,0,0,1,1,0,1,1,1,1,1,0,1],
+        [0,0,1,1,0,0,0,0,0,0,0,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     ]
+
+    path = set()
+    result = depth_search(matrix1, 7, 0, path)
+    print(result)
+
+    # path = set()
+    # result = depth_search(matrix2, 13, 0, path)
+    # print(result)
+
+    # path = set()
+    # result = depth_search(matrix3, 13, 0, path)
+    # print(result)
