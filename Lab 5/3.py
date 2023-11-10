@@ -1,12 +1,19 @@
-from random import randint
+def find_longest_increasing_subarray(arr):
+    max_length = 1
+    current_length = 1
+
+    for i in range(1, len(arr)):
+        if arr[i] > arr[i - 1]:
+            current_length += 1
+            max_length = max(max_length, current_length)
+        else:
+            current_length = 1
+
+    return max_length
 
 
-def main():
-    # n = 10
-    # array = [randint(-100, 100) for i in range(n)]
 
-    array = [4, 5, 6, 1, 2, 5, 4, 8, 9]
+array = [1, 2, 4, 3, 5, 7, 8, 6, 9]
+result = find_longest_increasing_subarray(array)
 
-
-if __name__ == '__main__':
-    main()
+print(result)
