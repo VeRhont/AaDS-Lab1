@@ -1,4 +1,7 @@
-def find_longest_increasing_subarray(arr):
+from random import randint
+
+
+def find_longest_subarray(arr):
     max_length = 1
     current_length = 1
 
@@ -12,8 +15,13 @@ def find_longest_increasing_subarray(arr):
     return max_length
 
 
+def main():
+    array = [randint(-100, 100) for i in range(12)]
+    print(array)
+    result = find_longest_subarray(array)
 
-array = [1, 2, 4, 3, 5, 7, 8, 6, 9]
-result = find_longest_increasing_subarray(array)
+    print(f'Длина наибольшей непрерывной возрастающей подпоследовательности: {result}')
 
-print(result)
+
+if __name__ == '__main__':
+    main()
